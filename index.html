@@ -10,10 +10,13 @@
   <script src="./Build/Template.js"></script>
   <splash src="Images/splash.jpg"></splash>
   <title>Teardrops - Visual Novel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&family=Satisfy&family=Sofia&family=Zen+Loop&display=swap');
+  </style>
 </head>
 
 <body>
-  <scene>
+  <scene id="scene">
     <canvas></canvas>
 
     <speech>
@@ -30,7 +33,7 @@
     </dialog>
 
     <dialog type="inventory">
-      <button type="button">close</button>
+      <button type="button">x</button>
       <ul></ul>
     </dialog>
   </scene>

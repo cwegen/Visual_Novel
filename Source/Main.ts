@@ -2,15 +2,12 @@ namespace Template {
 
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
-
-    console.log("Start");
-
-    //define transitions
+    
     export let transition = {
         teardrop: {
-            duration: 2,
+            duration: 1,
             alpha: "Transitions/teardrop.png",
-            edge: 0.15
+            edge: 0.3
         },
         clock: {
             duration: 1.5,
@@ -42,11 +39,18 @@ namespace Template {
 
         //soundeffects
         SchoolBell: "Audio/school_bell.wav",
+        DoorBell: "Audio/door_bell.wav",
+        DoorKnock: "Audio/door_knock.wav",
         Door: "Audio/door_opening.wav",
         SchoolCrowd: "Audio/crowd_school.wav",
         StreetCrowd: "Audio/crowd_streets.wav",
+        RestaurantCrowd: "Audio/restaurant_crowd.mp3",
+        Crickets: "Audio/crickets.wav",
+        Cinema: "Audio/cinema_horror_sounds.mp3",
+        Rain: "Audio/rain.wav",
         EmergencySiren: "Audio/emergency_siren.wav",
         Heartbeat: "Audio/heartbeat.wav",
+
 
     };
 
@@ -54,6 +58,10 @@ namespace Template {
         Startscreen: {
             name: "Startscreen",
             background: "Images/Backgrounds/startscreen.jpg"
+        },
+        Black: {
+            name: "Black",
+            background: "Images/Backgrounds/black.jpg"
         },
         City: {
             name: "Stadt",
@@ -82,6 +90,14 @@ namespace Template {
         School: {
             name: "Schule",
             background: "Images/Backgrounds/school.jpg"
+        },
+        Cinema: {
+            name: "Kino",
+            background: "Images/Backgrounds/cinema.jpg"
+        },
+        WcTonalds: {
+            name: "WcTonalds",
+            background: "Images/Backgrounds/wctonalds.jpg"
         }
     };
 
@@ -99,8 +115,16 @@ namespace Template {
     
     // define characters
     export let characters = {
-        Unbekannter: {
-            name: "Unbekannter"
+        Narrator: {
+            name: ""
+        },
+
+        Polizist: {
+            name: "Polizist",
+        },
+
+        UnbekannteFrau: {
+            name: "Unbekannte Frau",
         },
 
         MC: {
@@ -115,18 +139,20 @@ namespace Template {
             pose: {
                 normal: "Images/Characters/ben-normal.png",
                 cheeky: "Images/Characters/ben-cheeky.png",
-                smartphone: "Images/Characters/ben-smartphone.png"
+                smartphone: "Images/Characters/ben-smartphone.png",
+                smiling: "Images/Characters/ben-smiling.png",
+                angry: "Images/Characters/ben-angry.png"
             }
         },
 
-        Amelia: {
-            name: "Amelia",
+        River: {
+            name: "River",
             origin: ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                normal: "Images/Characters/test.png",
-                happy: "Images/Characters/amelia-happy.png",
-                sad: "Images/Characters/amelia-sad.png",
-                embarassed: "Images/Characters/amelia-embarassed.png"
+                normal: "Images/Characters/river-normal.png",
+                happy: "Images/Characters/river-happy.png",
+                sad: "Images/Characters/river-sad.png",
+                embarassed: "Images/Characters/river-embarassed.png"
             }
         },
         
@@ -150,7 +176,8 @@ namespace Template {
                 annoyed: "Images/Characters/king-annoyed.png",
                 angry: "Images/Characters/king-angry.png"
             }
-        }
+        },
+
     };
 
     export function leftToRight(): ƒS.AnimationDefinition {
@@ -181,12 +208,17 @@ namespace Template {
     }
 
     export let items = {
-        GoldenApple: {
-            name: "GoldenApple",
-            description: "A delicious golden apple. Is it healthy, though?",
-            image: "Images/Item/golden_apple.png"
+        Necklace: {
+            name: "Halskette",
+            description: "Eine schöne Halskette mit einem Tropfenanhänger aus Mondstein.",
+            image: "Images/Items/necklace.jpg",
+            handler: hndItem
         }
     };
+
+    export function hndItem(_event: CustomEvent): void {
+        console.log(_event);
+      }
 
 
 
@@ -235,6 +267,7 @@ namespace Template {
         }
         else if (_option == igMenu.load) {
             await ƒS.Progress.load();
+
         }
         else if (_option == igMenu.volumeUp) {
             incrementSound();
@@ -258,31 +291,39 @@ namespace Template {
     async function hndKeypress(_event: KeyboardEvent): Promise<void> {
         switch (_event.code) {
             case ƒ.KEYBOARD_CODE.F4:
-                console.log("save");
                 await ƒS.Progress.save();
                 break;
             case ƒ.KEYBOARD_CODE.F8:
-                console.log("load");
                 await ƒS.Progress.load();
                 break;
         }
     }
-
-    window.addEventListener("load", start);
+   
+    window.addEventListener("DOMContentLoaded", start);
     function start(_event: Event): void {
         //define the sequence of scene, each scene as an object with reference to the 
         let scenes: ƒS.Scenes = [
             { scene: Start, name: "Start Scene"},
-            { scene: Scene1, name: "Garden Scene"}
+            { scene: Scene1, name: "Abschnitt 1"},
+            { scene: Scene2, name: "Abschnitt 2"},
+            { scene: Scene3, name: "Abschnitt 3"}
         ];
 
         gameMenu =
         ƒS.Menu.create(igMenu, buttonFunctionalities, "gameMenu");
-
         //start the sequence
         ƒS.Progress.setData(data);
         ƒS.Progress.go(scenes);
+        ƒS.Inventory.add(items.Necklace);
+
     }
+
+    // let sceneParent = document.getElementById("scene");
+    // window.addEventListener("load", appendChild);
+    // function appendChild(_event: Event): void {
+    //     console.log(sceneParent);
+    //     sceneParent.appendChild(ƒS.Menu);
+    // }
 
     ƒS.Sound.setMasterVolume(volume);
 
