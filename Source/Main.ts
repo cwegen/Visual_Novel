@@ -1,8 +1,10 @@
-namespace Template {
+namespace Teardrops {
 
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
-    
+
+    let menuOpened: boolean = true;
+
     export let transition = {
         teardrop: {
             duration: 1,
@@ -11,17 +13,17 @@ namespace Template {
         },
         clock: {
             duration: 1.5,
-            alpha:"Transitions/circlewipe-cw.jpg",
+            alpha: "Transitions/circlewipe-cw.jpg",
             edge: 0.8
         },
         swirl: {
             duration: 1.5,
-            alpha:"Transitions/swirl.png",
+            alpha: "Transitions/swirl.png",
             edge: 0.1
         },
-        wet:{
+        wet: {
             duration: 1.5,
-            alpha:"Transitions/wet.jpg",
+            alpha: "Transitions/wet.jpg",
             edge: 0.8
         }
     };
@@ -48,8 +50,9 @@ namespace Template {
         Crickets: "Audio/crickets.wav",
         Cinema: "Audio/cinema_horror_sounds.mp3",
         Rain: "Audio/rain.wav",
-        EmergencySiren: "Audio/emergency_siren.wav",
-        Heartbeat: "Audio/heartbeat.wav",
+        CarCrash: "Audio/car_crash.wav",
+        EmergencySiren: "Audio/emergency_siren.mp3",
+        Heartbeat: "Audio/heartbeat.wav"
 
 
     };
@@ -63,6 +66,10 @@ namespace Template {
             name: "Black",
             background: "Images/Backgrounds/black.jpg"
         },
+        Cinema: {
+            name: "Kino",
+            background: "Images/Backgrounds/cinema.jpg"
+        },
         City: {
             name: "Stadt",
             background: "Images/Backgrounds/city.jpg"
@@ -74,6 +81,14 @@ namespace Template {
         Graveyard: {
             name: "Friedhof",
             background: "Images/Backgrounds/graveyard.jpg"
+        },
+        End: {
+            name: "The End",
+            background: "Images/Backgrounds/end.jpg"
+        },
+        Foyer: {
+            name: "Foyer",
+            background: "Images/Backgrounds/foyer.jpg"
         },
         MCRoomDay: {
             name: "Jugendzimmer_Tag",
@@ -91,10 +106,7 @@ namespace Template {
             name: "Schule",
             background: "Images/Backgrounds/school.jpg"
         },
-        Cinema: {
-            name: "Kino",
-            background: "Images/Backgrounds/cinema.jpg"
-        },
+
         WcTonalds: {
             name: "WcTonalds",
             background: "Images/Backgrounds/wctonalds.jpg"
@@ -105,14 +117,14 @@ namespace Template {
     export let data = {
         protagonist: {
             name: ""
-        }, 
+        },
         score: 0,
         state: {
             a: 1
         }
     };
 
-    
+
     // define characters
     export let characters = {
         Narrator: {
@@ -130,7 +142,7 @@ namespace Template {
         MC: {
             name: data.protagonist.name,
             origin: ƒS.ORIGIN.BOTTOMCENTER,
-            pose: {normal: "Images/Characters/MC.png"}
+            pose: { normal: "Images/Characters/MC.png" }
         },
 
         Ben: {
@@ -155,7 +167,7 @@ namespace Template {
                 embarassed: "Images/Characters/river-embarassed.png"
             }
         },
-        
+
         Sophie: {
             name: "Sophie",
             origin: ƒS.ORIGIN.BOTTOMCENTER,
@@ -182,28 +194,28 @@ namespace Template {
 
     export function leftToRight(): ƒS.AnimationDefinition {
         return {
-          start: { translation: ƒS.positions.bottomleft },
-          end: { translation: ƒS.positionPercent(71, 100) },
-          duration: 2,
-          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+            start: { translation: ƒS.positions.bottomleft },
+            end: { translation: ƒS.positionPercent(71, 100) },
+            duration: 2,
+            playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }
 
     export function leftToCenter(): ƒS.AnimationDefinition {
         return {
-          start: { translation: ƒS.positions.bottomleft },
-          end: { translation: ƒS.positions.bottomcenter },
-          duration: 1.5,
-          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+            start: { translation: ƒS.positions.bottomleft },
+            end: { translation: ƒS.positions.bottomcenter },
+            duration: 1.5,
+            playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }
 
     export function lefterToLeft(): ƒS.AnimationDefinition {
         return {
-          start: { translation: ƒS.positions.bottomleft },
-          end: { translation: ƒS.positionPercent(31, 100) },
-          duration: 1,
-          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+            start: { translation: ƒS.positions.bottomleft },
+            end: { translation: ƒS.positionPercent(31, 100) },
+            duration: 1,
+            playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }
 
@@ -218,7 +230,7 @@ namespace Template {
 
     export function hndItem(_event: CustomEvent): void {
         console.log(_event);
-      }
+    }
 
 
 
@@ -227,37 +239,34 @@ namespace Template {
     export let igMenu = {
         save: "Save",
         load: "Load",
-        close: "Close",
+        credits: "Credits",
         volumeUp: "+",
         volumeDown: "-",
-        credits: "Credits",
-        about: "About",
-        open: "Open"
+        close: "Close"
     };
 
     export let gameMenu: ƒS.Menu;
-    
-    let volume: number= 5.0;
+
+    let volume: number = 5.0;
 
     export function incrementSound(): void {
         if (volume >= 10)
-        return;
+            return;
         volume += 0.5;
         ƒS.Sound.setMasterVolume(volume);
     }
 
     export function decrementSound(): void {
         if (volume <= 0)
-        return;
-      volume -= 0.5;
-      ƒS.Sound.setMasterVolume(volume);
+            return;
+        volume -= 0.5;
+        ƒS.Sound.setMasterVolume(volume);
     }
 
     export function showCredits(): void {
         ƒS.Text.addClass("credits");
-        ƒS.Text.print("This is a Visual Novel Created with FudgeStory. Claudia Wegen is the Creator and Riem Yasin was the assisting lecturer for this project." + '<br/>' + "Characters are taken from The Sims 4. "+ '<br/>' + " Main Theme: Always Remember to Never Forget - The Whole Other" + '<br/>' + "Sad Theme: No.8 Requiem - Esther Abrami" + '<br/>' + "Melanchony Theme: Through and Through - Amulets" + '<br/>' + "Angry Theme: Raging Streets - SefChol" + '<br/>' + "Ending Theme: Before I Go - RKVC");
-    
-        // showCredits();
+        ƒS.Text.print("This is a Visual Novel Created with FudgeStory. Claudia Wegen is the author and Riem Yasin was the assisting lecturer for this project." + '<br/>' + "Characters are taken from The Sims 4. Big Thanks to Electronic Arts!" + '<br/>' + " Main Theme: Always Remember to Never Forget - The Whole Other" + '<br/>' + "Beginning Theme: Dolphin-esque - Godmode" + '<br/>' + "Sad Theme: No.8 Requiem - Esther Abrami" + '<br/>' + "Melanchony Theme: Through and Through - Amulets" + '<br/>' + "Angry Theme: Raging Streets - SefChol" + '<br/>' + "Ending Theme: Before I Go - RKVC");
+
     }
 
     async function buttonFunctionalities(_option: string): Promise<void> {
@@ -267,7 +276,6 @@ namespace Template {
         }
         else if (_option == igMenu.load) {
             await ƒS.Progress.load();
-
         }
         else if (_option == igMenu.volumeUp) {
             incrementSound();
@@ -276,15 +284,14 @@ namespace Template {
             decrementSound();
         }
         else if (_option == igMenu.close) {
-            gameMenu.close();
-        }
-        else if (_option == igMenu.open) {
-            gameMenu.open();
+            let menuElem: HTMLDialogElement = <HTMLDialogElement>document.getElementsByClassName("gameMenu")[0];
+            menuElem.style.display = "none";
+            menuOpened = false;
         }
         else if (_option == igMenu.credits) {
             showCredits();
         }
-        
+
     }
 
     document.addEventListener("keydown", hndKeypress);
@@ -296,9 +303,20 @@ namespace Template {
             case ƒ.KEYBOARD_CODE.F8:
                 await ƒS.Progress.load();
                 break;
+            case ƒ.KEYBOARD_CODE.ESC:
+                let menuElem: HTMLDialogElement = <HTMLDialogElement>document.getElementsByClassName("gameMenu")[0];
+                if (menuOpened) {
+                    menuElem.style.display = "none";
+                    menuOpened = false;
+                } else {
+                    menuElem.style.display = "block";
+                    menuOpened = true;
+                }
+                break;
         }
+
     }
-   
+
     window.addEventListener("DOMContentLoaded", start);
     function start(_event: Event): void {
         //define the sequence of scene, each scene as an object with reference to the 
@@ -306,11 +324,12 @@ namespace Template {
             { scene: Start, name: "Start Scene"},
             { scene: Scene1, name: "Abschnitt 1"},
             { scene: Scene2, name: "Abschnitt 2"},
-            { scene: Scene3, name: "Abschnitt 3"}
+            { scene: Scene3, name: "Abschnitt 3" },
+            { scene: End, name: "The End" }
         ];
 
         gameMenu =
-        ƒS.Menu.create(igMenu, buttonFunctionalities, "gameMenu");
+            ƒS.Menu.create(igMenu, buttonFunctionalities, "gameMenu");
         //start the sequence
         ƒS.Progress.setData(data);
         ƒS.Progress.go(scenes);

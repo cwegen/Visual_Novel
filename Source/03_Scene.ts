@@ -1,5 +1,5 @@
 
-namespace Template {
+namespace Teardrops {
     export async function Scene3(): ƒS.SceneReturn {
 
         let firstDialogueAnswers = {
@@ -8,8 +8,8 @@ namespace Template {
         };
 
         let secondDialogueAnswers = {
-            Eingebrockt: "Das hast du dir bestimmt selbst eingebrockt.",
-            NichtsVerloren: "Dann hast du wegen ihm nichts verloren."
+            NichtsVerloren: "Dann hast du wegen ihm nichts verloren.",
+            Eingebrockt: "Das hast du dir bestimmt selbst eingebrockt."
         };
 
         let badDialogueAnswers = {
@@ -23,11 +23,12 @@ namespace Template {
         await ƒS.Speech.tell(characters.Narrator, "Eine Woche später...");
         await ƒS.update(1);
         ƒS.Sound.fade(sound.SadTheme, 0.15, 0.2, true);
-        ƒS.Sound.play(sound.DoorKnock, 0.2);
+        ƒS.Sound.play(sound.DoorKnock, 0.1);
+        await ƒS.update(1);
         await ƒS.Speech.tell(characters.MC, "Ja?");
         await ƒS.Speech.tell(characters.Sophie, "Hey, " + data.protagonist.name + "... Kann ich reinkommen?");
         await ƒS.Speech.tell(characters.MC, "Klar, was ist denn los?");
-        ƒS.Sound.play(sound.Door, 0.4);
+        ƒS.Sound.play(sound.Door, 0.1);
         await ƒS.Character.animate(characters.Sophie, characters.Sophie.pose.sad, leftToCenter());
         await ƒS.Speech.tell(characters.Sophie, "Ed hat mit mir Schluss gemacht... Ich weiß nicht mehr, was ich machen soll.");
         await ƒS.Speech.tell(characters.Sophie, "Bitte hilf mir, " + data.protagonist.name + "...");
@@ -45,11 +46,11 @@ namespace Template {
                 switch (secondDialogueElement) {
                     case secondDialogueAnswers.NichtsVerloren:
                         await ƒS.update(1);
-                        normalGoodEnding();
+                        await normalGoodEnding();
                         break;
                     case secondDialogueAnswers.Eingebrockt:
                         await ƒS.update(1);
-                        badEnding();
+                        await badEnding();
                         break;
                 }
 
@@ -68,22 +69,23 @@ namespace Template {
                         switch (secondDialogueElement) {
                             case secondDialogueAnswers.NichtsVerloren:
                                 await ƒS.update(1);
-                                normalGoodEnding();
+                                await normalGoodEnding();
                                 break;
                             case secondDialogueAnswers.Eingebrockt:
                                 await ƒS.update(1);
-                                badEnding();
+                                await badEnding();
                                 break;
                         }
 
                         break;
                     case badDialogueAnswers.Eingebrockt:
                         await ƒS.update(1);
-                        badEnding();
+                        await badEnding();
                         break;
                 }
 
                 break;
+                
         }
 
     }
@@ -196,7 +198,8 @@ namespace Template {
         await ƒS.update();
         await ƒS.Speech.tell(characters.Sophie, "Auf dich kann man sich nicht verlassen. Das war ja klar. Danke für nichts!");
         ƒS.Character.hideAll();
-        ƒS.Sound.play(sound.Door, 0.4);
+        await ƒS.update();
+        ƒS.Sound.play(sound.Door, 0.1);
         await ƒS.Speech.tell(characters.MC, "(...)");
         await ƒS.Speech.tell(characters.MC, "(Ob ich wohl zu grob war?)");
         await ƒS.Speech.tell(characters.MC, "(Was auch immer... Sie benimmt sich ja auch nicht immer wie die tollste Schwester.)");
@@ -224,12 +227,13 @@ namespace Template {
         await ƒS.update(transition.clock.duration, transition.clock.alpha, transition.clock.edge);
         await ƒS.Speech.tell(characters.Narrator, "Am nächsten Tag...");
         ƒS.Sound.play(sound.DoorBell, 0.2);
+        await ƒS.update(1);
         await ƒS.Speech.tell(characters.MC, "Hallo?");
         await ƒS.Speech.tell(characters.Polizist, "Hallo junger Mann. Ist jemand von Ihren Erziehungsberechtigten da?");
         await ƒS.Speech.tell(characters.MC, "Nein, Herr Officer... Haben Sie Neuigkeiten über meine Schwester erfahren?");
         ƒS.Sound.fade(sound.MelanchonyTheme, 0.1, 1, true);
-        await ƒS.Speech.tell(characters.Polizist, "Ja... Es tut mir Leid, das Ihnen sagen zu müssen. Ihre Schwester ist leider an Suizid gestorben.");
-        await ƒS.Speech.tell(characters.MC, "Nein,das kann nicht sein...");
+        await ƒS.Speech.tell(characters.Polizist, "Ja... Es tut mir Leid, Ihnen mitteilen zu müssen, dass Ihre Schwester wohl Suizid begangen hat.");
+        await ƒS.Speech.tell(characters.MC, "Nein, das kann nicht sein...");
 
         await ƒS.Location.show(locations.Graveyard);
         await ƒS.update(transition.teardrop.duration, transition.teardrop.alpha, transition.teardrop.edge);
@@ -237,7 +241,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.MC, "(Wie kann ich nur so verdammt nochmal dumm sein... Ich bin Schuld an allem!)");
         await ƒS.Speech.tell(characters.MC, "(...)");
         await ƒS.Speech.tell(characters.MC, "(......)");
-        ƒS.Sound.fade(sound.Rain, 0.2, 2, true);
+        ƒS.Sound.fade(sound.Rain, 0.15, 2, true);
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.MC, "(Es fängt an zu regnen...)");
         await ƒS.Speech.tell(characters.MC, "(Ist ja auch egal...)");
@@ -252,15 +256,19 @@ namespace Template {
         await ƒS.Speech.tell(characters.MC, "(Ich bin ein Monster.)");
         await ƒS.Speech.tell(characters.MC, "(...)");
         await ƒS.Speech.tell(characters.UnbekannteFrau, "Oh mein Gott! Pass auf!!");
-        //carcrash ƒS.Sound.play(sound., 0.2, 1, true);
+        ƒS.Sound.play(sound.CarCrash, 0.2);
         ƒS.Speech.hide();
+        ƒS.Sound.fade(sound.MelanchonyTheme, 0, 1, false);
         await ƒS.Location.show(locations.Black);
+        
         await ƒS.update(2);
+        ƒS.Sound.fade(sound.EmergencySiren, 0.3, 0);
+        await ƒS.update(6);
+        ƒS.Sound.fade(sound.EmergencySiren, 0, 1);
         ƒS.Sound.fade(sound.Heartbeat, 0.2, 1, false);
         await ƒS.update(4);
         ƒS.Sound.fade(sound.Heartbeat, 0, 1, false);
         ƒS.Sound.fade(sound.Rain, 0, 1, false);
-        ƒS.Sound.fade(sound.MelanchonyTheme, 0, 1, false);
         //BAD ENDING
     }
 

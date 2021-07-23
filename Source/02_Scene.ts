@@ -1,10 +1,10 @@
-namespace Template {
+namespace Teardrops {
   export async function Scene2(): ƒS.SceneReturn {
 
 
     let firstDialogueAnswers = {
       Hemd: "kariertes Hemd",
-      Anzug: "Anzug"
+      Anzug: "schicker Anzug"
     };
 
     let secondDialogueAnswers = {
@@ -243,16 +243,20 @@ namespace Template {
       ƒS.Speech.clear();
       ƒS.Sound.fade(sound.SchoolCrowd, 0, 0.2, false);
       ƒS.Sound.fade(sound.HappyTheme, 0, 0.2, false);
-      await ƒS.Location.show(locations.Cinema);
+      await ƒS.Location.show(locations.Foyer);
       await ƒS.update(transition.clock.duration, transition.clock.alpha, transition.clock.edge);
       await ƒS.Speech.tell(characters.MC, "(Hmm... Wo bleibt sie denn?)");
       await ƒS.Speech.tell(characters.MC, "(...)");
       await ƒS.Speech.tell(characters.MC, "Sie kommt wohl leider nicht. Dann schaue ich mir den Film halt alleine an.");
-      ƒS.Sound.fade(sound.Cinema, 0.2, 1, true);
+      await ƒS.Location.show(locations.Cinema);
+      await ƒS.update(transition.swirl.duration, transition.swirl.alpha, transition.swirl.edge);
+      ƒS.Sound.fade(sound.Cinema, 0.3, 1, true);
       await ƒS.Speech.tell(characters.MC, "(...)");
       await ƒS.Speech.tell(characters.Narrator, "5 Minuten später.");
       await ƒS.Speech.tell(characters.MC, "(Vielleicht wartet sie ja doch im Foyer auf mich...)");
-      ƒS.Sound.fade(sound.Cinema, 0.05, 1, true);
+      await ƒS.Location.show(locations.Foyer);
+      await ƒS.update(transition.swirl.duration, transition.swirl.alpha, transition.swirl.edge);
+      ƒS.Sound.fade(sound.Cinema, 0.1, 1, true);
       await ƒS.Speech.tell(characters.MC, "(Hmm, ich seh sie nicht...)");
       await ƒS.Character.animate(characters.River, characters.River.pose.sad, leftToCenter());
       await ƒS.Speech.tell(characters.Narrator, "River erscheint aus dem Kinosaal.");
@@ -265,7 +269,9 @@ namespace Template {
       await ƒS.Character.show(characters.River, characters.River.pose.happy, ƒS.positions.bottomcenter);
       await ƒS.update();
       await ƒS.Speech.tell(characters.River, "Okay...");
-      ƒS.Sound.fade(sound.Cinema, 0.2, 1, true);
+      await ƒS.Location.show(locations.Cinema);
+      await ƒS.update(transition.swirl.duration, transition.swirl.alpha, transition.swirl.edge);
+      ƒS.Sound.fade(sound.Cinema, 0.3, 1, true);
       await ƒS.update(3);
       ƒS.Character.hideAll();
       ƒS.Speech.clear();

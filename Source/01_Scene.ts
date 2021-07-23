@@ -1,4 +1,4 @@
-namespace Template {
+namespace Teardrops {
   export async function Scene1(): ƒS.SceneReturn {
 
     let firstDialogueAnswers = {
@@ -71,7 +71,7 @@ namespace Template {
     await ƒS.Character.show(characters.Ben, characters.Ben.pose.normal, ƒS.positionPercent(71, 100));
     await ƒS.update(1);
     await ƒS.Speech.tell(characters.Ben, "Es ist schon ziemlich spät geworden... Vielleicht sollte ich besser ma-");
-    ƒS.Sound.play(sound.Door, 0.2, false);
+    ƒS.Sound.play(sound.Door, 0.1, false);
     await ƒS.Character.animate(characters.Sophie, characters.Sophie.pose.angry, lefterToLeft());
     await ƒS.update(1);
     await ƒS.Speech.tell(characters.Sophie, "Was ist denn hier schon wieder los?! Warum müsst ihr IMMER nur vor dieser dummen Konsole hocken? Wie wärs mal damit, etwas produktives zu machen?");
@@ -101,7 +101,7 @@ namespace Template {
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.Ben, "Das war ziemlich verrückt... Ist deine Schwester immer so?");
         await ƒS.Speech.tell(characters.MC, "Naja, ab und zu kommt sie betrunken nach Hause und wirft die ganze Bude durcheinander...");
-        await ƒS.Speech.tell(characters.MC, "Heute scheint auch so ein Fall gewesen zu sein. Sorry dafür, bro.");
+        await ƒS.Speech.tell(characters.MC, "Heute scheint auch so ein Fall gewesen zu sein. Sorry dafür, Bro.");
         await ƒS.Speech.tell(characters.Ben, "Alles gut, sowas bin ich ja auch schon vom King gewohnt.");
         await ƒS.Speech.tell(characters.MC, "Haha stimmt! Da sind wir schon abgehärtet...");
         await ƒS.Speech.tell(characters.MC, "...");
@@ -111,7 +111,7 @@ namespace Template {
         await ƒS.Character.show(characters.Ben, characters.Ben.pose.normal, ƒS.positions.bottomcenter);
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.Ben, "Bro, wie kommst du darauf... Du bist Einzigartig.");
-        await ƒS.Speech.tell(characters.MC, "Halt die Klappe. Ich brauche etwas, um wirklich herausstechen zu können..");
+        await ƒS.Speech.tell(characters.MC, "Halt die Klappe. Ich brauche etwas, um wirklich auffallen zu können..");
         await ƒS.Speech.tell(characters.MC, "Etwas besonderes, wie River. Schau sie dir mal an, kein Mädchen ist wie sie. Sie ist komplett anders.");
         ƒS.Character.hideAll();
         await ƒS.Character.show(characters.Ben, characters.Ben.pose.angry, ƒS.positions.bottomcenter);
@@ -149,7 +149,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.Sophie, "Übrigens... Das von vorhin tut mir Leid... Ich glaube, ich habe wieder etwas zu viel getrunken... Du weißt, dass ich dann immer schnell wütend werde.");
         await ƒS.Speech.tell(characters.MC, "Schon verziehen! Ich weiß, du meinst es trotzdem gut.");
         await ƒS.Speech.tell(characters.Sophie, "Danke... Ich geh' dann mal wieder in mein Zimmer.");
-        ƒS.Sound.play(sound.Door, 0.2, false);
+        ƒS.Sound.play(sound.Door, 0.1, false);
         ƒS.Speech.clear();
         await ƒS.update(1);
         ƒS.Character.hideAll();
