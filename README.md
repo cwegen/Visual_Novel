@@ -10,6 +10,7 @@ Link zum gepackten Archiv: https://drive.google.com/file/d/1hT7uKTohUEe8eHi2Ctj5
 
 <ul> 
 Anmerkungen:
+ <li>Die Story musste leider im Vergleich zum Drehbuch gekürzt werden. </li>
  <li>Charakter-Bilder sind freigestellte Screenshots aus 'Die Sims 4'. </li>
  <li>Hintergrund-Bilder sind von https://pixabay.com/de/ heruntergeladen und über Photoshop überarbeitet worden. </li>
  <li>Audiodateien sind aus der Youtube-Media-Library und aus https://freesound.org. Entsprechende Künstler wurden erwähnt. </li>
