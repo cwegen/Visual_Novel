@@ -22,6 +22,17 @@ p {
   color:rgb(0, 0, 0);
 }
 
+.credits {
+  text-align: center;
+  font-family: 'Zen Loop', cursive;
+  border: solid rgb(199, 199, 199);
+  border-radius: 10px;
+  background-color: rgba(43, 43, 43, 0.8);
+  color: rgb(255, 255, 255);
+  font-size: 32px;
+
+}
+
 scene {
   width: 1280px;
   height: 720px;

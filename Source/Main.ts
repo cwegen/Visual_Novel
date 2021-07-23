@@ -265,7 +265,7 @@ namespace Teardrops {
 
     export function showCredits(): void {
         ƒS.Text.addClass("credits");
-        ƒS.Text.print("This is a Visual Novel Created with FudgeStory. Claudia Wegen is the author and Riem Yasin was the assisting lecturer for this project." + '<br/>' + "Characters are taken from The Sims 4. Big Thanks to Electronic Arts!" + '<br/>' + " Main Theme: Always Remember to Never Forget - The Whole Other" + '<br/>' + "Beginning Theme: Dolphin-esque - Godmode" + '<br/>' + "Sad Theme: No.8 Requiem - Esther Abrami" + '<br/>' + "Melanchony Theme: Through and Through - Amulets" + '<br/>' + "Angry Theme: Raging Streets - SefChol" + '<br/>' + "Ending Theme: Before I Go - RKVC");
+        ƒS.Text.print("This is a Visual Novel Created with FudgeStory. The author of this Novel is Claudia Wegen and Riem Yasin was the assisting lecturer for this project." + '<br/>' + "Characters are taken from 'The Sims 4'. Big Thanks to Electronic Arts!" + '<br/>' + " Main Theme: Always Remember to Never Forget - The Whole Other" + '<br/>' + "Beginning Theme: Dolphin-esque - Godmode" + '<br/>' + "Sad Theme: No.8 Requiem - Esther Abrami" + '<br/>' + "Melanchony Theme: Through and Through - Amulets" + '<br/>' + "Angry Theme: Raging Streets - SefChol" + '<br/>' + "Ending Theme: Before I Go - RKVC");
 
     }
 
